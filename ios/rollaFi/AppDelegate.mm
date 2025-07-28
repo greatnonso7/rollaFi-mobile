@@ -2,6 +2,7 @@
 
 #import <React/RCTBundleURLProvider.h>
 
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -10,6 +11,8 @@
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
+
+  [self showSplashScreen]; // Call the method to display the splash screen
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
@@ -26,6 +29,17 @@
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
+}
+
+// Add this method to AppDelegate.m
+- (void)showSplashScreen {
+    Class splashClass = NSClassFromString(@"SplashView");
+    if (splashClass) {
+        id splashInstance = [splashClass performSelector:NSSelectorFromString(@"sharedInstance")];
+        if (splashInstance && [splashInstance respondsToSelector:NSSelectorFromString(@"showSplash")]) {
+            [splashInstance performSelector:NSSelectorFromString(@"showSplash")];
+        }
+    }
 }
 
 @end
