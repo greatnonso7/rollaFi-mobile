@@ -75,8 +75,8 @@ export const Button = ({
         width={wp(344)}
         backgroundColor={
           disabled || loading
-            ? theme.colors.APP_BLACK_300
-            : backgroundColor || theme.colors.WHITE_300
+            ? theme.colors.WHITE_700
+            : backgroundColor || theme.colors.PRIMARY
         }
         {...props}>
         <Box

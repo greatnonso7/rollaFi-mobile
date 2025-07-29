@@ -7,6 +7,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {fontSz, hp, populateHitSlop, wp} from 'utils';
 import {RootStackParamList} from 'types';
 import theme from 'theme';
+import {useDarkTheme} from 'theme/dark-mode';
 
 export const Header = ({
   hasBackButton,
@@ -15,8 +16,10 @@ export const Header = ({
   onPressRightIcon,
   containerProps,
   hasHeaderText,
+  hasLogo,
 }: headerProps) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const {themeColor} = useDarkTheme();
 
   const renderHeaderLeft = () => {
     if (hasBackButton && navigation.canGoBack()) {
@@ -57,6 +60,10 @@ export const Header = ({
           </Text>
         </Box>
       );
+    }
+
+    if (hasLogo) {
+      return <Icon name="logo" color={themeColor.BODY_MAIN_TEXT} />;
     }
   };
 

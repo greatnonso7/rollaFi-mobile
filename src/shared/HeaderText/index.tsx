@@ -2,8 +2,8 @@ import {Box, Text} from 'design-system';
 import React from 'react';
 import {TextStyle} from 'react-native';
 import {Icon} from 'shared/Icon';
-import theme from 'theme';
-import {fontSz, hp} from 'utils';
+import {useDarkTheme} from 'theme/dark-mode';
+import {fontSz, hp, wp} from 'utils';
 
 interface HeaderTextProps {
   hasHeaderText: string;
@@ -20,8 +20,9 @@ export const HeaderText = ({
   fontSize = fontSz(14),
   hasSubHeader,
 }: HeaderTextProps) => {
+  const {themeColor} = useDarkTheme();
   return (
-    <Box>
+    <Box mx={wp(16)}>
       <Box flexDirection={'row'} alignItems={'center'}>
         {hasIcon && (
           <Box mr={10}>
@@ -29,8 +30,8 @@ export const HeaderText = ({
           </Box>
         )}
         <Text
-          variant="bodyMedium"
-          color={theme.colors.WHITE_300}
+          variant="bodySemiBold"
+          color={themeColor.BODY_MAIN_TEXT}
           fontSize={fontSize}
           lineHeight={hp(43)}
           style={textStyle}>
@@ -42,7 +43,7 @@ export const HeaderText = ({
           variant="body"
           fontSize={fontSz(14)}
           lineHeight={hp(18)}
-          color={theme.colors.BODY}>
+          color={themeColor.SUB_HEADER_TEXT}>
           {hasSubHeader}
         </Text>
       )}

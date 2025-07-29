@@ -11,4 +11,5 @@ export interface headerProps {
   width?: number;
   textVariant?: 'bodySmall' | 'smallBold';
   darkColor?: boolean;
+  hasLogo?: boolean;
 }

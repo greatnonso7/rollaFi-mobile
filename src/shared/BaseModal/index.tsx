@@ -11,7 +11,8 @@ import {BaseModalProps} from './types';
 import {hp} from 'utils';
 import theme from 'theme';
 import {Box, Text} from 'design-system';
-import {styles} from './style';
+import {getStyles} from './style';
+import {useDarkTheme} from 'theme/dark-mode';
 
 export const BaseModal = ({
   visible,
@@ -21,6 +22,8 @@ export const BaseModal = ({
   removeBackTap,
   hasCloseButton,
 }: BaseModalProps) => {
+  const {themeColor} = useDarkTheme();
+  const styles = getStyles(themeColor);
   return (
     <Modal
       isVisible={visible}

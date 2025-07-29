@@ -3,7 +3,7 @@ import {StatusBar, SafeAreaView} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Box} from 'design-system';
 import {hp, isAndroid} from 'utils';
-import theme from 'theme';
+import {useDarkTheme} from 'theme/dark-mode';
 
 interface Props {
   children: React.ReactNode | React.ReactNode[];
@@ -19,12 +19,13 @@ export const Screen = ({
   opacity,
 }: Props) => {
   const {top} = useSafeAreaInsets();
+  const {themeColor} = useDarkTheme();
 
   return (
     <>
       {removeSafeaArea ? (
         <Box
-          backgroundColor={backgroundColor || theme.colors.APP_BLACK_100}
+          backgroundColor={backgroundColor || themeColor.BACKGROUND_COLOR}
           flex={1}
           opacity={opacity || 1}
           pt={isAndroid ? top + hp(10) : top}>
@@ -33,7 +34,7 @@ export const Screen = ({
         </Box>
       ) : (
         <Box
-          backgroundColor={backgroundColor || theme.colors.APP_BLACK_100}
+          backgroundColor={backgroundColor || themeColor.BACKGROUND_COLOR}
           flex={1}
           as={SafeAreaView}>
           <StatusBar />

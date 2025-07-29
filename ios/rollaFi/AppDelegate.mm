@@ -1,6 +1,7 @@
 #import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
+#import <React/RCTLinkingManager.h>
 
 
 @implementation AppDelegate
@@ -15,6 +16,22 @@
   [self showSplashScreen]; // Call the method to display the splash screen
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
+}
+
+// Add this inside `@implementation AppDelegate` above `@end`:
+- (BOOL)application:(UIApplication *)application
+   openURL:(NSURL *)url
+   options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  return [RCTLinkingManager application:application openURL:url options:options];
+}
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(nonnull NSUserActivity *)userActivity
+ restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
+{
+ return [RCTLinkingManager application:application
+                  continueUserActivity:userActivity
+                    restorationHandler:restorationHandler];
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

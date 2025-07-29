@@ -1,6 +1,11 @@
 import React, {useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {ThemeProvider} from '@emotion/react';
 import {showSplash, hideSplash} from 'react-native-splash-view';
+import theme from 'theme';
+import {FlashMessageToast} from 'shared';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import Navigation from 'navigation';
+import {DarkThemeProvider} from 'theme/dark-mode';
 
 const App = () => {
   useEffect(() => {
@@ -12,9 +17,14 @@ const App = () => {
   }, []);
 
   return (
-    <View>
-      <Text>Hello World</Text>
-    </View>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        <DarkThemeProvider>
+          <FlashMessageToast />
+          <Navigation />
+        </DarkThemeProvider>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 };
 

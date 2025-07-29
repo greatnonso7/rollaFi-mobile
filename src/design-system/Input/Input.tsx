@@ -16,6 +16,7 @@ import styles from './style';
 import {fontSz, hp} from 'utils';
 import {useNavigation} from '@react-navigation/native';
 import {Icon} from 'shared';
+import {useDarkTheme} from 'theme/dark-mode';
 
 interface RegularInputProps extends InputBaseProps, TextInputProps {
   type?: 'regular';
@@ -65,6 +66,7 @@ export const RegularInput = ({
   bvnName,
   ...props
 }: RegularInputProps) => {
+  const {themeColor} = useDarkTheme();
   const regularInput = ({onChange, onBlur, value}: ControllerRenderProps) => {
     return (
       <Box
@@ -94,7 +96,7 @@ export const RegularInput = ({
             styles.textInput,
             textInputContainerStyle,
             {
-              color: theme.colors.WHITE_300,
+              color: themeColor.BODY_MAIN_TEXT,
             },
           ]}
           value={value}

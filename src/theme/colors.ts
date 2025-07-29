@@ -3,7 +3,7 @@ export const colors = {
   BLACK: '#000000',
   APP_BLACK_100: '#121212',
   GOLD: '#FAD395',
-  PRIMARY: '#041F2E',
+  PRIMARY: '#B3EE48',
   GREEN: '#009F5D',
   RED: '#FF4D5A',
   GREY_600: '#888795',
@@ -43,4 +43,34 @@ export const colors = {
   WHITE_100: '#FFFFFFCC',
   BLACK_APP_100: '#1F1F1F',
   WHITE_700: '#FAFAFA',
+};
+
+export const lightColors = {
+  ...colors,
+  BACKGROUND_COLOR: colors.WHITE,
+  BODY_TEXT_COLOR: colors.PRIMARY,
+  BODY_MAIN_TEXT: colors.BLACK,
+  HEADER_TEXT: colors.PRIMARY,
+  MAIN_HEADER_TEXT: colors.BLACK,
+  SUB_HEADER_TEXT: colors.GREY_600,
+  DASHBOARD_HEADER_BG: colors.WHITE,
+  DASHBOARD_HEADER_TEXT: colors.PRIMARY,
+  APP_ICON_COLOR: colors.WHITE,
+  LIST_ITEM_BG: colors.WHITE,
+  LIST_ITEM_BG_200: colors.WHITE_100,
+};
+
+export const darkColors = {
+  ...colors,
+  BACKGROUND_COLOR: colors.APP_BLACK,
+  BODY_TEXT_COLOR: colors.WHITE,
+  BODY_MAIN_TEXT: colors.WHITE,
+  HEADER_TEXT: colors.WHITE,
+  MAIN_HEADER_TEXT: colors.WHITE,
+  SUB_HEADER_TEXT: colors.GREY_600,
+  DASHBOARD_HEADER_BG: colors.BLACK,
+  DASHBOARD_HEADER_TEXT: colors.WHITE,
+  APP_ICON_COLOR: colors.WHITE,
+  LIST_ITEM_BG: colors.BLACK_500,
+  LIST_ITEM_BG_200: colors.BLACK_500,
 };
