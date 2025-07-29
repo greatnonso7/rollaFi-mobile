@@ -11,11 +11,13 @@ import {activeWalletList} from 'data';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {DashboardStackParamList} from 'types';
 import {showMessage} from 'react-native-flash-message';
+import {OtherTopUp} from './Modals';
 
 export const Home = () => {
-  const {userData, updateKYCStatus, activeWallet} = useRollaFiStore();
+  const {userData, updateKYCStatus, activeWallet, setActiveWallet} =
+    useRollaFiStore();
   const {themeColor} = useDarkTheme();
-  const [_open, setOpen] = useState<string | null>(null);
+  const [open, setOpen] = useState<'other-top-up' | ''>('');
 
   const {navigate} = useNavigation<NavigationProp<DashboardStackParamList>>();
 
@@ -29,6 +31,7 @@ export const Home = () => {
         ...sliderState,
         currentPage: indexOfNextScreen,
       });
+      setActiveWallet(activeWalletList[indexOfNextScreen]);
     }
   };
 
@@ -56,22 +59,20 @@ export const Home = () => {
   };
 
   const onPressWalletOption = async (option: any) => {
-    if (option.title === 'Top up') {
+    if (option.title === 'Deposit') {
       if (activeWallet?.currency === 'NGN') {
-        setOpen('ngn-top-up');
-      } else if (activeWallet?.currency === 'USDT') {
-        navigate('USDTWalletInfo');
+        navigate('FundWallet', {activeWallet});
       } else {
         setOpen('other-top-up');
       }
-    } else if (option.title === 'Send') {
+    } else if (option.title === 'Withdraw') {
       navigate('SendFunds', {activeWallet});
-    } else if (option.title === 'Convert') {
+    } else if (option.title === 'Swap') {
       navigate('ConvertFunds', {activeWallet});
     }
   };
 
-  console.log(userData?.isVerified);
+  console.log(activeWallet);
 
   return (
     <Screen removeSafeaArea>
@@ -80,7 +81,6 @@ export const Home = () => {
         contentContainerStyle={styles.scrollContainer}>
         {/* Header Section */}
 
-        <Button title="KYC" onPress={handleKYCVerification} isNotBottom />
         <Box style={styles.header} mx={wp(16)}>
           <Text
             variant="bodyBold"
@@ -248,6 +248,12 @@ export const Home = () => {
           </Box>
         </Box>
       </ScrollView>
+
+      <OtherTopUp
+        isVisible={open === 'other-top-up'}
+        onClose={() => setOpen('')}
+        onComplete={() => setOpen('')}
+      />
     </Screen>
   );
 };

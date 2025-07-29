@@ -22,6 +22,7 @@ export type DashboardStackParamList = {
   USDTWalletInfo: undefined;
   SendFunds: {activeWallet: any};
   ConvertFunds: {activeWallet: any};
+  FundWallet: {activeWallet: any};
 };
 
 export type BottomTabStackParamList = {

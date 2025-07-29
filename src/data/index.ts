@@ -9,12 +9,12 @@ export const activeWalletList = [
     options: [
       {
         id: 1,
-        title: 'Top up',
+        title: 'Deposit',
         icon: 'plus-circle',
       },
       {
         id: 2,
-        title: 'Send',
+        title: 'Withdraw',
         icon: 'arrow-up-right',
       },
       {

@@ -5,4 +5,5 @@ export const images = {
   'usd-card-type': require('assets/images/usd-card-type.png'),
   usd: require('assets/images/usd.png'),
   ngn: require('assets/images/ngn.png'),
+  wallet: require('assets/images/wallet.png'),
 };
