@@ -2,6 +2,7 @@ import React from 'react';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 import {DashboardStackParamList} from 'types';
 import BottomTabBar from './bottom-tab';
+import {RollaFiWebView} from 'shared';
 
 const DashboardStack = createStackNavigator<DashboardStackParamList>();
 
@@ -14,6 +15,7 @@ const DashboardNavigation = () => {
         ...TransitionPresets.SlideFromRightIOS,
       }}>
       <DashboardStack.Screen name="Dashboard" component={BottomTabBar} />
+      <DashboardStack.Screen name="RollaFiWebView" component={RollaFiWebView} />
     </DashboardStack.Navigator>
   );
 };

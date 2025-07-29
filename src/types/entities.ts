@@ -13,26 +13,15 @@ export type AuthStackParamList = {
 
 export type DashboardStackParamList = {
   Dashboard: BottomTabStackParamList;
-  AddMeter: undefined;
-  AddMeterName: undefined;
-  EditProfile: undefined;
-  BillBeneficiaries: undefined;
-  ChangePassword: undefined;
-  ChangeTransactionPIN: undefined;
-  ConfirmTransactionPIN: {pin: string};
-  GetSupport: undefined;
-  ManageMeters: undefined;
-  Terms: undefined;
-  EditBillBeneficiary: {beneficiary?: any};
-  EnterBVN: undefined;
-  VerifyBvn: undefined;
-  More: undefined;
-  CompleteWalletCreation: undefined;
-  Airtime: undefined;
-  ReviewDetails: {data: any};
-  PurchaseSuccessful: {data: any};
-  Transactions: undefined;
-  SingleTransaction: {transaction: any};
+  RollaFiWebView: {
+    uri: string;
+    title?: string;
+    autoCloseAfter?: number;
+    onVerificationComplete?: () => void;
+  };
+  USDTWalletInfo: undefined;
+  SendFunds: {activeWallet: any};
+  ConvertFunds: {activeWallet: any};
 };
 
 export type BottomTabStackParamList = {

@@ -24,6 +24,15 @@ export const getLettersFromName = (fullname: string | null) => {
   }
 };
 
+export const formatCurrency = (amount: number, currency: string) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+};
+
 export const formatAmount = (value: any) =>
   Number(value)
     .toFixed(2)
@@ -278,3 +287,13 @@ export const clearDeepLinkAndSaveData = async (
     console.error('Error clearing deep link and saving data:', error);
   }
 };
+
+export function formatTitleUrl(str: string) {
+  const firstPart = str?.split('//')[1];
+  const formattedUrl = getStringBeforeSubstring(firstPart, '/');
+  return formattedUrl;
+}
+
+function getStringBeforeSubstring(parentString: string, substring: string) {
+  return parentString?.substring(0, parentString?.indexOf(substring));
+}

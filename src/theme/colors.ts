@@ -43,6 +43,10 @@ export const colors = {
   WHITE_100: '#FFFFFFCC',
   BLACK_APP_100: '#1F1F1F',
   WHITE_700: '#FAFAFA',
+  GREY_BG_100: '#DFDFDF',
+  GREY_BG_200: '#0E0E0E',
+  OFF_WHITE_300: '#E9E9E9',
+  INNER_BORDER: '#282828',
 };
 
 export const lightColors = {
@@ -58,6 +62,8 @@ export const lightColors = {
   APP_ICON_COLOR: colors.WHITE,
   LIST_ITEM_BG: colors.WHITE,
   LIST_ITEM_BG_200: colors.WHITE_100,
+  IMAGE_OVERLAY: colors.GREY_BG_100,
+  WALLET_BG: colors.OFF_WHITE_300,
 };
 
 export const darkColors = {
@@ -73,4 +79,6 @@ export const darkColors = {
   APP_ICON_COLOR: colors.WHITE,
   LIST_ITEM_BG: colors.BLACK_500,
   LIST_ITEM_BG_200: colors.BLACK_500,
+  IMAGE_OVERLAY: colors.GREY_BG_200,
+  WALLET_BG: colors.INNER_BORDER,
 };

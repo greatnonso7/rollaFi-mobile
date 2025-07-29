@@ -13,7 +13,7 @@ const App = () => {
 
     setTimeout(() => {
       hideSplash(); // Hide after some time
-    }, 3000);
+    }, 1000);
   }, []);
 
   return (

@@ -9,4 +9,5 @@ export * from './HeaderText';
 export * from './Icon';
 export * from './Loader';
 export * from './ModalHeader';
+export * from './RollaFiWebView';
 export * from './Screen';
