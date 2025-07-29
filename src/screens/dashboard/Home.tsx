@@ -247,41 +247,6 @@ export const Home = () => {
             )}
           </Box>
         </Box>
-
-        {/* Action Buttons */}
-        {/* {userData?.isVerified && (
-          <Box style={styles.actionsSection}>
-            <Text variant="headerBold" style={styles.sectionTitle}>
-              Quick Actions
-            </Text>
-
-            <Box style={styles.actionButtons}>
-              <Button
-                title="Deposit"
-                isNotBottom
-                onPress={handleDeposit}
-                textColor="#FFF"
-                containerStyle={styles.depositButton}
-              />
-
-              <Button
-                title="Swap"
-                isNotBottom
-                onPress={handleSwap}
-                textColor="#FFF"
-                containerStyle={styles.swapButton}
-              />
-
-              <Button
-                title="Withdraw"
-                isNotBottom
-                onPress={handleWithdraw}
-                textColor="#FFF"
-                containerStyle={styles.withdrawButton}
-              />
-            </Box>
-          </Box>
-        )} */}
       </ScrollView>
     </Screen>
   );
@@ -295,90 +260,17 @@ const styles = StyleSheet.create({
     marginTop: hp(20),
     marginBottom: hp(30),
   },
-  welcomeText: {
-    color: theme.colors.PRIMARY,
-    marginBottom: hp(8),
-  },
+
   subtitleText: {
     color: theme.colors.GREY_600,
   },
-  currencySection: {
-    marginBottom: hp(25),
-  },
+
   sectionTitle: {
     marginBottom: hp(15),
     color: theme.colors.APP_BLACK_100,
     fontWeight: '600',
   },
-  currencyContainer: {
-    marginBottom: hp(15),
-  },
-  currencyList: {
-    paddingHorizontal: wp(2),
-  },
-  currencyCard: {
-    width: wp(280),
-    padding: hp(16),
-    borderRadius: wp(16),
-    marginRight: wp(12),
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
-    backgroundColor: '#FFF',
-    borderLeftWidth: 4,
-  },
-  currencyHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: hp(8),
-  },
-  currencyInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  currencySymbol: {
-    fontSize: wp(18),
-    fontWeight: 'bold',
-    color: theme.colors.APP_BLACK_100,
-    marginRight: wp(4),
-  },
-  currencyCode: {
-    fontSize: wp(14),
-    color: theme.colors.GREY_600,
-    fontWeight: '500',
-  },
-  currencyBalance: {
-    fontSize: wp(20),
-    fontWeight: 'bold',
-    color: theme.colors.APP_BLACK_100,
-    textAlign: 'right',
-    flex: 1,
-  },
-  balanceLabel: {
-    fontSize: wp(12),
-    color: theme.colors.GREY_600,
-  },
-  paginationContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: hp(15),
-  },
-  paginationDot: {
-    width: wp(8),
-    height: wp(8),
-    borderRadius: wp(4),
-    marginHorizontal: wp(4),
-  },
-  activeDot: {
-    backgroundColor: theme.colors.PRIMARY,
-  },
-  inactiveDot: {
-    backgroundColor: theme.colors.GREY_600,
-  },
+
   fxRateCard: {
     backgroundColor: '#FFF',
     padding: wp(20),
@@ -487,117 +379,5 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.PRIMARY,
     paddingVertical: hp(12),
     borderRadius: wp(8),
-  },
-  actionsSection: {
-    marginBottom: hp(20),
-  },
-  actionButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: wp(12),
-  },
-  depositButton: {
-    flex: 1,
-    paddingVertical: hp(14),
-    borderRadius: wp(12),
-    backgroundColor: theme.colors.PRIMARY,
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  swapButton: {
-    flex: 1,
-    paddingVertical: hp(14),
-    borderRadius: wp(12),
-    backgroundColor: '#4A90E2',
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  withdrawButton: {
-    flex: 1,
-    paddingVertical: hp(14),
-    borderRadius: wp(12),
-    backgroundColor: '#FF6B6B',
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  transactionsSection: {
-    marginBottom: hp(25),
-  },
-  transactionsHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: hp(15),
-  },
-  viewAllText: {
-    color: theme.colors.PRIMARY,
-    fontSize: wp(14),
-    fontWeight: '600',
-  },
-  transactionsList: {
-    // No specific styles for FlatList, items are handled by renderTransaction
-  },
-  transactionItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: hp(12),
-    borderBottomWidth: 1,
-    borderBottomColor: theme.colors.GREY_600,
-  },
-  transactionLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  transactionIcon: {
-    width: wp(40),
-    height: wp(40),
-    borderRadius: wp(20),
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: theme.colors.GREY_600,
-    marginRight: wp(12),
-  },
-  iconText: {
-    fontSize: wp(20),
-  },
-  transactionDetails: {
-    flex: 1,
-  },
-  transactionTitle: {
-    fontSize: wp(16),
-    fontWeight: '600',
-    color: theme.colors.APP_BLACK_100,
-  },
-  transactionDateTime: {
-    fontSize: wp(12),
-    color: theme.colors.GREY_600,
-    marginTop: hp(2),
-  },
-  transactionRight: {
-    alignItems: 'flex-end',
-  },
-  transactionAmount: {
-    fontSize: wp(16),
-    fontWeight: 'bold',
-  },
-  statusBadge: {
-    paddingHorizontal: wp(8),
-    paddingVertical: hp(4),
-    borderRadius: wp(12),
-    marginTop: hp(8),
-  },
-  statusText: {
-    fontSize: wp(12),
-    fontWeight: '600',
   },
 });
