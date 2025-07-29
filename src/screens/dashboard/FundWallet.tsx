@@ -66,8 +66,7 @@ export const FundWallet = () => {
       // Validate amount
       if (amount < 10000) {
         showMessage({
-          message: 'Invalid Amount',
-          description: 'The minimum amount is ₦10,000.00',
+          message: 'The minimum amount is ₦10,000.00',
           type: 'danger',
           duration: 3000,
         });
@@ -77,8 +76,7 @@ export const FundWallet = () => {
       // Validate KYC status
       if (!userData?.isVerified) {
         showMessage({
-          message: 'KYC Required',
-          description: 'Please complete your identity verification first',
+          message: 'Please complete your identity verification first',
           type: 'warning',
           duration: 3000,
         });
@@ -99,8 +97,7 @@ export const FundWallet = () => {
 
       // Show success message
       showMessage({
-        message: 'Wallet Funded Successfully!',
-        description: `₦${formatNumberWithCommas(
+        message: `₦${formatNumberWithCommas(
           amount.toString(),
         )} has been added to your NGN wallet`,
         type: 'success',
@@ -115,8 +112,7 @@ export const FundWallet = () => {
       console.error('Fund wallet error:', error);
 
       showMessage({
-        message: 'Transaction Failed',
-        description: 'Unable to fund wallet. Please try again.',
+        message: 'Unable to fund wallet. Please try again.',
         type: 'danger',
         duration: 3000,
       });

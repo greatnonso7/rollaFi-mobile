@@ -81,8 +81,7 @@ export const SendFunds = () => {
       // Validate amount
       if (amount < minAmount) {
         showMessage({
-          message: 'Invalid Amount',
-          description: `The minimum amount to send is ${currency} ${formatNumberWithCommas(
+          message: `The minimum amount to send is ${currency} ${formatNumberWithCommas(
             minAmount.toString(),
           )}`,
           type: 'danger',
@@ -94,8 +93,7 @@ export const SendFunds = () => {
       // Validate KYC status
       if (!userData?.isVerified) {
         showMessage({
-          message: 'KYC Required',
-          description: 'Please complete your identity verification first',
+          message: 'Please complete your identity verification first',
           type: 'warning',
           duration: 3000,
         });
@@ -113,8 +111,7 @@ export const SendFunds = () => {
       // Check if user has sufficient balance
       if (amount > currentBalance) {
         showMessage({
-          message: 'Insufficient Balance',
-          description: `You don't have enough ${currency} in your wallet. Current balance: ${currency} ${formatNumberWithCommas(
+          message: `You don't have enough ${currency} in your wallet. Current balance: ${currency} ${formatNumberWithCommas(
             currentBalance.toString(),
           )}`,
           type: 'danger',
@@ -144,8 +141,7 @@ export const SendFunds = () => {
 
       // Show success message
       showMessage({
-        message: 'Money Sent Successfully!',
-        description: `${currency} ${formatNumberWithCommas(
+        message: `${currency} ${formatNumberWithCommas(
           amount.toString(),
         )} has been sent to ${recipientName}`,
         type: 'success',
@@ -175,8 +171,7 @@ export const SendFunds = () => {
       console.error('Send money error:', error);
 
       showMessage({
-        message: 'Transaction Failed',
-        description: 'Unable to send money. Please try again.',
+        message: 'Unable to send money. Please try again.',
         type: 'danger',
         duration: 3000,
       });
@@ -193,6 +188,7 @@ export const SendFunds = () => {
       />
 
       <HeaderText
+        containerStyle={{mt: hp(16)}}
         hasHeaderText={`Send ${activeWallet?.currency} Funds`}
         hasSubHeader={`Enter the amount you want to send from your ${activeWallet?.currency} wallet`}
       />

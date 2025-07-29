@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Account, Home, Swap} from 'screens/dashboard';
+import {Account, ConvertFunds, Home} from 'screens/dashboard';
 import theme from 'theme';
 import {fontSz, hp} from 'utils';
 import {BottomTab} from 'shared';
@@ -42,7 +42,7 @@ const BottomTabBar = () => {
 
       <DashboardBottomTabs.Screen
         name="Swap"
-        component={Swap}
+        component={ConvertFunds}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (

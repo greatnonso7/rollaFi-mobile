@@ -74,7 +74,7 @@ export const RegularInput = ({
         activeOpacity={0.8}
         onPress={onPressDropDown}
         as={isDropDown ? TouchableOpacity : View}
-        borderBottomColor={theme.colors.BORDER_BOTTOM_COLOR}
+        borderBottomColor={themeColor.BODY_MAIN_TEXT}
         borderBottomWidth={0.5}
         style={[
           styles.baseContainer,
