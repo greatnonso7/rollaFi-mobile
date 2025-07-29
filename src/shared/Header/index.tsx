@@ -52,10 +52,10 @@ export const Header = ({
       return (
         <Box>
           <Text
-            variant="bodyMedium"
-            fontSize={fontSz(16)}
-            lineHeight={hp(19)}
-            color={theme.colors.WHITE_300}>
+            variant="bodySemiBold"
+            fontSize={fontSz(20)}
+            lineHeight={hp(24)}
+            color={themeColor.BODY_MAIN_TEXT}>
             {hasHeaderText}
           </Text>
         </Box>

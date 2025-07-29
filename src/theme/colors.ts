@@ -47,6 +47,7 @@ export const colors = {
   GREY_BG_200: '#0E0E0E',
   OFF_WHITE_300: '#E9E9E9',
   INNER_BORDER: '#282828',
+  BLACK_200: '#020202',
 };
 
 export const lightColors = {
@@ -68,7 +69,7 @@ export const lightColors = {
 
 export const darkColors = {
   ...colors,
-  BACKGROUND_COLOR: colors.APP_BLACK,
+  BACKGROUND_COLOR: colors.BLACK_200,
   BODY_TEXT_COLOR: colors.WHITE,
   BODY_MAIN_TEXT: colors.WHITE,
   HEADER_TEXT: colors.WHITE,
