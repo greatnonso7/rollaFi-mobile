@@ -33,7 +33,7 @@ interface RegularInputProps extends InputBaseProps, TextInputProps {
   isLoading?: boolean;
   isDiscount?: boolean;
   isRequired?: boolean;
-  isAmount?: boolean;
+  isAmount?: string;
   bvnName?: string;
 }
 
@@ -84,8 +84,11 @@ export const RegularInput = ({
         {hasIcon && <Icon name={hasIcon} />}
         {isAmount && (
           <Box mr={2}>
-            <Text variant="bodyMedium" fontSize={fontSz(14)}>
-              ₦
+            <Text
+              variant="bodyMedium"
+              color={themeColor.BODY_MAIN_TEXT}
+              fontSize={fontSz(14)}>
+              {isAmount === 'NGN' ? '₦' : '$'}
             </Text>
           </Box>
         )}

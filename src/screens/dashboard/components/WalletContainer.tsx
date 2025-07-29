@@ -1,11 +1,12 @@
 import React from 'react';
 import {Box, Text} from 'design-system';
-import {deviceWidth, fontSz, hp, isAndroid, wp} from 'utils';
+import {deviceWidth, fontSz, formatAmount, hp, isAndroid, wp} from 'utils';
 import {Image, ImageBackground, ImageSourcePropType} from 'react-native';
 import theme from 'theme';
 import {getStyles} from './style';
 import {Icon} from 'shared';
 import {useDarkTheme} from 'theme/dark-mode';
+import {useRollaFiStore} from 'store';
 
 type WalletContainerProps = {
   wallet: any;
@@ -23,6 +24,7 @@ interface WalletConfig {
 export const WalletContainer = ({wallet}: WalletContainerProps) => {
   const {themeColor} = useDarkTheme();
   const styles = getStyles(themeColor);
+  const {userData} = useRollaFiStore();
 
   const activeWallet = () => {
     let config: WalletConfig = {
@@ -99,15 +101,9 @@ export const WalletContainer = ({wallet}: WalletContainerProps) => {
               pt={10}
               style={styles.amountText}
               color={activeWallet().color}>
-              {wallet?.amount}
+              {formatAmount(userData?.walletBalance?.[wallet?.currency])}
             </Text>
           </Box>
-          {/* <Box
-            as={TouchableOpacity}
-            activeOpacity={0.8}
-            onPress={openWalletList}>
-            <Icon name={activeWallet().icon || 'ngn-wallet-switch'} />
-          </Box> */}
         </Box>
       </ImageBackground>
       <Box

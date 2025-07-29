@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import {Icon, Screen} from 'shared';
 import {Box, Text, Button} from 'design-system';
@@ -17,6 +17,7 @@ export const Home = () => {
   const {userData, updateKYCStatus, activeWallet, setActiveWallet} =
     useRollaFiStore();
   const {themeColor} = useDarkTheme();
+  const styles = getStyles(themeColor);
   const [open, setOpen] = useState<'other-top-up' | ''>('');
 
   const {navigate} = useNavigation<NavigationProp<DashboardStackParamList>>();
@@ -34,6 +35,12 @@ export const Home = () => {
       setActiveWallet(activeWalletList[indexOfNextScreen]);
     }
   };
+
+  useEffect(() => {
+    if (activeWalletList?.length > 0) {
+      setActiveWallet(activeWalletList[0]);
+    }
+  }, [setActiveWallet]);
 
   const scrollViewRef = useRef<ScrollView>(null);
 
@@ -72,7 +79,7 @@ export const Home = () => {
     }
   };
 
-  console.log(activeWallet);
+  console.log(userData?.walletBalance?.NGN);
 
   return (
     <Screen removeSafeaArea>
@@ -199,54 +206,56 @@ export const Home = () => {
         </Box>
 
         {/* KYC Status Section */}
-        <Box style={styles.kycSection} mx={wp(16)}>
-          <Text variant="headerBold" style={styles.sectionTitle}>
-            Identity Verification
-          </Text>
+        {!userData?.isVerified && (
+          <Box style={styles.kycSection} mx={wp(16)}>
+            <Text variant="headerBold" style={styles.sectionTitle}>
+              Identity Verification
+            </Text>
 
-          <Box
-            style={[
-              styles.kycCard,
-              userData?.isVerified
-                ? styles.verifiedCard
-                : styles.unverifiedCard,
-            ]}>
-            <Box style={styles.kycContent}>
-              <Box style={styles.kycIcon}>
-                {userData?.isVerified ? (
-                  <Text style={styles.checkIcon}>✓</Text>
-                ) : (
-                  <Text style={styles.warningIcon}>!</Text>
-                )}
+            <Box
+              style={[
+                styles.kycCard,
+                userData?.isVerified
+                  ? styles.verifiedCard
+                  : styles.unverifiedCard,
+              ]}>
+              <Box style={styles.kycContent}>
+                <Box style={styles.kycIcon}>
+                  {userData?.isVerified ? (
+                    <Text style={styles.checkIcon}>✓</Text>
+                  ) : (
+                    <Text style={styles.warningIcon}>!</Text>
+                  )}
+                </Box>
+
+                <Box style={styles.kycText}>
+                  <Text style={styles.kycStatus}>
+                    {userData?.isVerified
+                      ? 'Identity Verified'
+                      : 'Identity Not Verified'}
+                  </Text>
+                  <Text style={styles.kycDescription}>
+                    {userData?.isVerified
+                      ? 'Your account is fully verified and ready for all transactions.'
+                      : 'Complete KYC to unlock all features including deposits and withdrawals.'}
+                  </Text>
+                </Box>
               </Box>
 
-              <Box style={styles.kycText}>
-                <Text style={styles.kycStatus}>
-                  {userData?.isVerified
-                    ? 'Identity Verified'
-                    : 'Identity Not Verified'}
-                </Text>
-                <Text style={styles.kycDescription}>
-                  {userData?.isVerified
-                    ? 'Your account is fully verified and ready for all transactions.'
-                    : 'Complete KYC to unlock all features including deposits and withdrawals.'}
-                </Text>
-              </Box>
+              {!userData?.isVerified && (
+                <Button
+                  title="Verify Identity"
+                  isNotBottom
+                  width={'100%'}
+                  onPress={handleKYCVerification}
+                  backgroundColor={theme.colors.PRIMARY}
+                  textColor="#FFF"
+                  containerStyle={styles.kycButton}
+                />
+              )}
             </Box>
-
-            {!userData?.isVerified && (
-              <Button
-                title="Verify Identity"
-                isNotBottom
-                width={'100%'}
-                onPress={handleKYCVerification}
-                backgroundColor={theme.colors.PRIMARY}
-                textColor="#FFF"
-                containerStyle={styles.kycButton}
-              />
-            )}
           </Box>
-        </Box>
+        )}
       </ScrollView>
 
       <OtherTopUp
@@ -258,132 +267,133 @@ export const Home = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  scrollContainer: {
-    paddingBottom: hp(20),
-  },
-  header: {
-    marginTop: hp(20),
-    marginBottom: hp(30),
-  },
+const getStyles = (themeColor: any) =>
+  StyleSheet.create({
+    scrollContainer: {
+      paddingBottom: hp(20),
+    },
+    header: {
+      marginTop: hp(20),
+      marginBottom: hp(30),
+    },
 
-  subtitleText: {
-    color: theme.colors.GREY_600,
-  },
+    subtitleText: {
+      color: theme.colors.GREY_600,
+    },
 
-  sectionTitle: {
-    marginBottom: hp(15),
-    color: theme.colors.APP_BLACK_100,
-    fontWeight: '600',
-  },
+    sectionTitle: {
+      marginBottom: hp(15),
+      color: theme.colors.APP_BLACK_100,
+      fontWeight: '600',
+    },
 
-  fxRateCard: {
-    backgroundColor: '#FFF',
-    padding: wp(20),
-    borderRadius: wp(16),
-    marginBottom: hp(25),
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
-  },
-  fxHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: hp(12),
-  },
-  fxTitle: {
-    color: theme.colors.APP_BLACK_100,
-    fontWeight: '600',
-  },
-  rateBadge: {
-    backgroundColor: theme.colors.PRIMARY,
-    paddingHorizontal: wp(8),
-    paddingVertical: hp(4),
-    borderRadius: wp(12),
-  },
-  rateText: {
-    color: '#FFF',
-    fontSize: wp(10),
-    fontWeight: '600',
-  },
-  rateDisplay: {
-    alignItems: 'center',
-  },
-  rateAmount: {
-    fontSize: wp(18),
-    fontWeight: 'bold',
-    color: theme.colors.APP_BLACK_100,
-    marginBottom: hp(4),
-  },
-  rateTimestamp: {
-    fontSize: wp(12),
-    color: theme.colors.GREY_600,
-  },
-  kycSection: {
-    marginBottom: hp(25),
-  },
-  kycCard: {
-    padding: wp(20),
-    borderRadius: wp(16),
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: 2},
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
-  },
-  verifiedCard: {
-    backgroundColor: '#E8F5E8',
-    borderLeftWidth: 4,
-    borderLeftColor: theme.colors.PRIMARY,
-  },
-  unverifiedCard: {
-    backgroundColor: '#FFF3CD',
-    borderLeftWidth: 4,
-    borderLeftColor: '#FFC107',
-  },
-  kycContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: hp(15),
-  },
-  kycIcon: {
-    width: wp(40),
-    height: wp(40),
-    borderRadius: wp(20),
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: wp(12),
-  },
-  checkIcon: {
-    fontSize: wp(20),
-    color: '#FFF',
-    fontWeight: 'bold',
-  },
-  warningIcon: {
-    fontSize: wp(20),
-    color: '#FFF',
-    fontWeight: 'bold',
-  },
-  kycText: {
-    flex: 1,
-  },
-  kycStatus: {
-    fontSize: wp(16),
-    fontWeight: '600',
-    color: theme.colors.APP_BLACK_100,
-    marginBottom: hp(4),
-  },
-  kycDescription: {
-    fontSize: wp(14),
-    color: theme.colors.GREY_600,
-    lineHeight: wp(20),
-  },
-  kycButton: {
-    backgroundColor: theme.colors.PRIMARY,
-    paddingVertical: hp(12),
-    borderRadius: wp(8),
-  },
-});
+    fxRateCard: {
+      backgroundColor: themeColor.LIST_ITEM_BG,
+      padding: wp(20),
+      borderRadius: wp(16),
+      marginBottom: hp(25),
+      shadowColor: themeColor.BODY_MAIN_TEXT,
+      shadowOffset: {width: 0, height: 2},
+      shadowOpacity: 0.1,
+      shadowRadius: 8,
+      elevation: 4,
+    },
+    fxHeader: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: hp(12),
+    },
+    fxTitle: {
+      color: themeColor.BODY_MAIN_TEXT,
+      fontWeight: '600',
+    },
+    rateBadge: {
+      backgroundColor: theme.colors.PRIMARY,
+      paddingHorizontal: wp(8),
+      paddingVertical: hp(4),
+      borderRadius: wp(12),
+    },
+    rateText: {
+      color: themeColor.BODY_MAIN_TEXT,
+      fontSize: wp(10),
+      fontWeight: '600',
+    },
+    rateDisplay: {
+      alignItems: 'center',
+    },
+    rateAmount: {
+      fontSize: wp(18),
+      fontWeight: 'bold',
+      color: themeColor.BODY_MAIN_TEXT,
+      marginBottom: hp(4),
+    },
+    rateTimestamp: {
+      fontSize: wp(12),
+      color: theme.colors.GREY_600,
+    },
+    kycSection: {
+      marginBottom: hp(25),
+    },
+    kycCard: {
+      padding: wp(20),
+      borderRadius: wp(16),
+      shadowColor: '#000',
+      shadowOffset: {width: 0, height: 2},
+      shadowOpacity: 0.1,
+      shadowRadius: 8,
+      elevation: 4,
+    },
+    verifiedCard: {
+      backgroundColor: '#E8F5E8',
+      borderLeftWidth: 4,
+      borderLeftColor: theme.colors.PRIMARY,
+    },
+    unverifiedCard: {
+      backgroundColor: '#FFF3CD',
+      borderLeftWidth: 4,
+      borderLeftColor: '#FFC107',
+    },
+    kycContent: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: hp(15),
+    },
+    kycIcon: {
+      width: wp(40),
+      height: wp(40),
+      borderRadius: wp(20),
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginRight: wp(12),
+    },
+    checkIcon: {
+      fontSize: wp(20),
+      color: '#FFF',
+      fontWeight: 'bold',
+    },
+    warningIcon: {
+      fontSize: wp(20),
+      color: '#FFF',
+      fontWeight: 'bold',
+    },
+    kycText: {
+      flex: 1,
+    },
+    kycStatus: {
+      fontSize: wp(16),
+      fontWeight: '600',
+      color: theme.colors.APP_BLACK_100,
+      marginBottom: hp(4),
+    },
+    kycDescription: {
+      fontSize: wp(14),
+      color: theme.colors.GREY_600,
+      lineHeight: wp(20),
+    },
+    kycButton: {
+      backgroundColor: theme.colors.PRIMARY,
+      paddingVertical: hp(12),
+      borderRadius: wp(8),
+    },
+  });

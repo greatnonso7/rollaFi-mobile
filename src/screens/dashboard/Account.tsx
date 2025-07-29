@@ -1,14 +1,15 @@
 import React from 'react';
 import {Header, Screen} from 'shared';
-import {Box, Text} from 'design-system';
+import {Box, Button, Text} from 'design-system';
 import {Appearance, ScrollView} from 'react-native';
 import {ProfilePreference} from './components';
 import {hp, wp} from 'utils';
 import {useDarkTheme} from 'theme/dark-mode';
+import {useRollaFiStore} from 'store';
 
 export const Account = () => {
-  const {isDark, setScheme} = useDarkTheme();
-  const {themeColor} = useDarkTheme();
+  const {logout} = useRollaFiStore();
+  const {isDark, setScheme, themeColor} = useDarkTheme();
   const handleThemeSwitch = async (option: {
     id: number;
     state: string;
@@ -51,6 +52,8 @@ export const Account = () => {
           />
         </Box>
       </ScrollView>
+
+      <Button title="Logout" onPress={logout} />
     </Screen>
   );
 };

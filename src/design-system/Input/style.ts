@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   errorContainer: {
-    borderBottomWidth: hp(3),
+    borderBottomWidth: hp(1),
+    borderBottomColor: theme.colors.RED_TEXT_100,
   },
 });
 

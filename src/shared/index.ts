@@ -1,3 +1,4 @@
+export * from './AvoidingView';
 export * from './BaseModal';
 export * from './BlurLoader';
 export * from './BottomTab';

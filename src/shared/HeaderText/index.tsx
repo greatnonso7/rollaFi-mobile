@@ -1,4 +1,4 @@
-import {Box, Text} from 'design-system';
+import {Box, BoxProps, Text} from 'design-system';
 import React from 'react';
 import {TextStyle} from 'react-native';
 import {Icon} from 'shared/Icon';
@@ -11,6 +11,7 @@ interface HeaderTextProps {
   hasIcon?: string;
   fontSize?: number;
   hasSubHeader?: string;
+  containerStyle?: BoxProps;
 }
 
 export const HeaderText = ({
@@ -19,10 +20,11 @@ export const HeaderText = ({
   textStyle,
   fontSize = fontSz(14),
   hasSubHeader,
+  containerStyle,
 }: HeaderTextProps) => {
   const {themeColor} = useDarkTheme();
   return (
-    <Box mx={wp(16)}>
+    <Box mx={wp(16)} {...containerStyle}>
       <Box flexDirection={'row'} alignItems={'center'}>
         {hasIcon && (
           <Box mr={10}>

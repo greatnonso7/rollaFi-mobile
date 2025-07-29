@@ -22,7 +22,7 @@ interface FXRate {
 
 interface UserData {
   isVerified: boolean;
-  walletBalance: WalletBalance;
+  walletBalance: WalletBalance | any;
   fxRate: FXRate;
   kycStatus: 'pending' | 'verified' | 'rejected' | 'not_started';
 }
@@ -60,6 +60,9 @@ interface RollaFiStore {
   // Active wallet management
   activeWallet: any;
   setActiveWallet: (wallet: any) => void;
+
+  // Logout
+  logout: () => void;
 }
 
 const rollaFiSlice: StateCreator<
@@ -135,6 +138,9 @@ const rollaFiSlice: StateCreator<
     // This will be handled by the getter in the store
     return null;
   },
+
+  // Logout
+  logout: () => set({isLoggedIn: false}),
 });
 
 export const useRollaFiStore = create<RollaFiStore>()(

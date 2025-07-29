@@ -14,7 +14,7 @@ export const getStyles = (themeColor: any) =>
     },
 
     cellRoot: {
-      backgroundColor: theme.colors.WHITE,
+      backgroundColor: themeColor.BACKGROUND_COLOR,
       borderRadius: hp(8),
       borderWidth: 1,
       borderColor: theme.colors.GREY_600,
@@ -26,7 +26,7 @@ export const getStyles = (themeColor: any) =>
 
     cellText: {
       textAlign: 'center',
-      color: theme.colors.APP_BLACK,
+      color: themeColor.BODY_MAIN_TEXT,
       fontFamily: theme.font.GeneralSansMedium,
       fontSize: fontSz(24),
     },
